@@ -8,7 +8,7 @@
     "dev": "nodemon ./src/server.js"
   },
   "keywords": [
-    "API",
+    "API", 
     "SUPERMARKET",
     "ITEMS"
   ],
