@@ -1,4 +1,4 @@
-const {celebrate, Joi, Segments} = require('celebrate');
+const { celebrate, Joi, Segments } = require('celebrate');
 
 const password = Joi.string().required();
 const email = Joi.string().email().required();

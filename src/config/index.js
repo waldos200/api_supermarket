@@ -1,25 +1,23 @@
 const { ENV, DB_URL, PORT } = require('../constants/config');
 
-const NODE_ENV = ENV;
-
-const ENVS = {
-    development: {
-        db:
-        {
-            url: DB_URL,
-        },
-        port: PORT
+const ENVS = { 
+  development: {
+    db:
+    {
+      url: DB_URL,
     },
-    test: {
+    port: PORT
+  },
+  test: {
 
+  },
+  producction: {
+    db:
+    {
+      url: DB_URL,
     },
-    producction: {
-        db: 
-        {
-            url: DB_URL,
-        },
-        port: PORT
-    }
-}
+    port: PORT
+  }
+};
 
-module.exports = ENVS[NODE_ENV]
+module.exports = ENVS[ENV]
