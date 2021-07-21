@@ -21,6 +21,7 @@ const UserSchema = new Schema(
     email: {
       type: String,
       require: true,
+      index: { unique: true }
     },
     birth_date: {
       Date,
@@ -39,9 +40,11 @@ const UserSchema = new Schema(
 
 UserSchema.pre("save", (next) => {
   let user = this;
+
   if (!user.isModified("password")) {
     return next();
   }
+
   bcrypt.genSalt(SALT_FACTOR, function (err, salt) {
     if (err) return next(err);
     bcrypt.hash(user.password, salt, function (err, hash) {
@@ -50,6 +53,7 @@ UserSchema.pre("save", (next) => {
       next();
     });
   });
+
 });
 
 const User = mongoose.model("users", UserSchema);

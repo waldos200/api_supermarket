@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const { errors } = require('celebrate');
 const mongoose = require('mongoose');
+const routes = require('./routes')
 
 const { db: { url }, port } = require('./config');
 
@@ -13,7 +14,11 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(morgan('dev'));
 
 app.use(errors());
-mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(url, {
+    useCreateIndex: true, 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
+});
 
 const db = mongoose.connection;
 db.on('error',(error) => console.log('FAILED TO CONNECT TO MONGO', error));

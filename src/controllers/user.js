@@ -1,9 +1,15 @@
 const { userService } = require('../services');
 
-const UserCreate = (req, res) => {
-    userService.createUser(req.body)
-        .then( (User) => res.status(201).json(User))
-        .catch( (error) => res.status(400).json(error));
+const UserCreate = async (req, res) => {
+    try {
+        const user = await userService.createUser(req.body);
+
+        if(!user) throw { error: new Error('User not created'), messsage: 'User not created' };
+
+        res.status(201).json(user);
+    } catch (error) {
+        (error) => res.status(400).json(error)
+    }
 };
 
 module.exports = {
