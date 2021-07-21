@@ -1,4 +1,6 @@
 const { userService } = require('../services');
+const auth = require('../utils/authenticate');
+const generateJWT = require('../utils/generateJWT');
 
 const UserCreate = async (req, res) => {
   try {
@@ -12,6 +14,20 @@ const UserCreate = async (req, res) => {
   }
 };
 
+const login = async (req, res) => {
+  try {
+
+    const user = await auth(req.body);
+    const token = generateJWT(user)
+    
+    res.status(200).send({token});
+  } catch (error) {
+    console.log(error);
+    res.status(400).json(error)
+  }
+}
+
 module.exports = {
-  UserCreate
+  UserCreate,
+  login
 };
