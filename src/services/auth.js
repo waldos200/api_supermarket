@@ -1,15 +1,14 @@
-// const { authenticate, generateJWT } = require('../utils')
-const auth = require('../utils/authenticate')
-const generateJWT = require('../utils/generateJWT')
+const { authenticate, generateJWT } = require('../utils')
 
 const login = async (data) => {
   try {
-    const user = await auth(data);
-    const token = generateJWT(user)
-    
+    console.log(data);
+    const user = await authenticate(data);
+    const token = await generateJWT(user);
+
     return token
   } catch (error) {
-    throw new Error(error)
+    throw error;
   }
 }
 

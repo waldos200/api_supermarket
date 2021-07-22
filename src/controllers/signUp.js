@@ -1,8 +1,6 @@
-const { userService } = require('../services');
-const auth = require('../utils/authenticate');
-const generateJWT = require('../utils/generateJWT');
+const { userService, authService } = require('../services');
 
-const UserCreate = async (req, res) => {
+const signUp = async (req, res) => {
   try {
     const user = await userService.createUser(req.body);
     
@@ -14,20 +12,22 @@ const UserCreate = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {
+const logIn = async (req, res) => {
   try {
+    const { email, password } = req.body;
 
-    const user = await auth(req.body);
-    const token = generateJWT(user)
-    
+    const user = await userService.findUserByEmail(email);
+
+    const token = await authService.login({user, password});
+
     res.status(200).send({token});
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(400).json(error)
   }
 }
 
 module.exports = {
-  UserCreate,
-  login
+  signUp,
+  logIn
 };
