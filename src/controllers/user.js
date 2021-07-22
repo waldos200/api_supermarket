@@ -1,5 +1,9 @@
 const { userService } = require('../services');
 
+const returnUser =  (req, res) => { 
+  res.status(201).json({user: req.user});
+}
+
 const findUsers = async (req, res) => {
   try {
     const users = await userService.findAllUsers();
@@ -12,5 +16,6 @@ const findUsers = async (req, res) => {
 }
 
 module.exports = {
+  returnUser,
   findUsers,
 }
