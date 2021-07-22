@@ -15,7 +15,20 @@ const findUsers = async (req, res) => {
   }
 }
 
+const findUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await userService.findUserById(id)
+
+    res.status(202).send({user});
+  } catch (error) {
+    console.error(error);
+    res.status(400).json(error);
+  }
+}
+
 module.exports = {
   returnUser,
   findUsers,
+  findUserById
 }
