@@ -27,8 +27,23 @@ const findUserById = async (req, res) => {
   }
 }
 
+const updateUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const body = req.body;
+
+    const user = await userService.updateUserById(id, data);
+
+    res.status(202).send({user});
+  } catch (error) {
+    console.error(error);
+    res.status(400).json(error);
+  }
+}
+
 module.exports = {
   returnUser,
   findUsers,
-  findUserById
+  findUserById, 
+  updateUserById
 }

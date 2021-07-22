@@ -21,7 +21,18 @@ const create = celebrate({
   }
 });
 
+const update = celebrate({
+  [Segments.BODY] :{
+    first_name: Joi.string(),
+    last_name: Joi.string(),
+    birth_date: Joi.date(),
+    gender: Joi.string().valid('male','female', 'other'),
+    password: Joi.string(),
+  }
+});
+
 module.exports = {
   create,
-  login
+  login, 
+  update
 }

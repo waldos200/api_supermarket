@@ -38,9 +38,22 @@ const findUserById = async (id) => {
   }
 }
 
+const updateUserById = async (id, data) => {
+  try {
+    const user = await User.findByIdAndUpdate(id, {$set: data}, {new: true} );
+
+    if (!users) throw ({error: new Error('Users not found'), messsage: 'Users not found'});
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   createUser,
   findUserByEmail,
   findAllUsers,
-  findUserById
+  findUserById,
+  updateUserById
 };
