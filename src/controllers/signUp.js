@@ -23,9 +23,9 @@ const logIn = async (req, res) => {
     res.status(200).send({token});
   } catch (error) {
     console.error(error);
-    res.status(400).json(error)
+    res.status(400).json(error);
   }
-}
+};
 
 module.exports = {
   signUp,

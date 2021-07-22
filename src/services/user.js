@@ -12,9 +12,22 @@ const findUserByEmail = async (email) => {
   } catch (error) {
     throw error;
   }
-} 
+};
+
+const findAllUsers = async () => {
+  try {
+    const users = await User.find().exec();
+
+    if (!users) throw ({error: new Error('Users not found'), messsage: 'Users not found'});
+
+    return users;
+  } catch (error) {
+    throw error;
+  }
+}
 
 module.exports = {
   createUser,
-  findUserByEmail
+  findUserByEmail,
+  findAllUsers
 };
