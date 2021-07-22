@@ -25,7 +25,7 @@ const UserSchema = new Schema({
   birth_date: Date,
   is_active: {
     type: Boolean, 
-    default: false
+    default: true
   },
   gender: {
     type: String,
