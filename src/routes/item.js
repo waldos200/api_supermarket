@@ -5,10 +5,10 @@ const { itemValidator } = require('../validators');
 const { itemController } = require('../controllers');
 
 router.post('/', itemValidator.create, itemController.create);
-router.get('/', itemValidator.findByName, itemController.findByName);
+router.get('/', itemController.findByName);
 router.get('/all', itemController.findItems);
 router.get('/:id', itemController.findItemById);
-router.put('/:id', itemValidator.update, itemController.updateItemById);
-router.delete('/:id', itemValidator.update, itemController.deleteItemById);
+router.put('/:id', itemController.updateItemById);
+router.delete('/:id', itemController.deleteItemById);
 
 module.exports = router;

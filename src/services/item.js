@@ -4,7 +4,7 @@ const create = async (data) => await Item.create(data);
 
 const findItemByName = async (name) => {
     try {
-      const item = await item.findOne({name, is_active:true}).exec()
+      const item = await Item.findOne({name, is_active:true}).exec()
   
       if (!item) throw ({error: new Error('item not found'), messsage: 'item not found'});
   
@@ -16,7 +16,7 @@ const findItemByName = async (name) => {
 
 const findAllItems = async () => {
     try {
-      const items = await item.find({is_active:true}).exec();
+      const items = await Item.find({is_active:true}).exec();
   
       if (!items) throw ({error: new Error('items not found'), messsage: 'items not found'});
   
@@ -28,7 +28,7 @@ const findAllItems = async () => {
 
 const findItemById = async (id) => {
     try {
-      const item = await item.findById(id).exec()
+      const item = await Item.findById(id).exec()
   
       if (!item) throw ({error: new Error('item not found'), messsage: 'item not found'});
       
@@ -40,7 +40,7 @@ const findItemById = async (id) => {
 
 const updateItemById = async (id, data) => {
     try {
-      const item = await item.findByIdAndUpdate(id, {$set: data }, {new: true})
+      const item = await Item.findByIdAndUpdate(id, {$set: data }, {new: true})
   
       if (!item) throw ({error: new Error('item not found'), messsage: 'item not found'});
   
@@ -52,7 +52,7 @@ const updateItemById = async (id, data) => {
 
 const deleteItemById = async (id) => {
     try {
-      const item = await item.findByIdAndUpdate(id, {$set: {is_active: false} }, {new: true})
+      const item = await Item.findByIdAndUpdate(id, {$set: {is_active: false} }, {new: true})
   
       if (!item) throw ({error: new Error('item not found'), messsage: 'item not found'});
   

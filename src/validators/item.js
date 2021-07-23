@@ -8,22 +8,22 @@ const create = celebrate({
   }
 });
 
-const findByName = celebrate({
+/* const findByName = celebrate({
   [Segments.QUERY] :{
     name: Joi.string().required(),
   }
-});
+}); */
 
-const update = celebrate({
+/* const update = celebrate({
   [Segments.BODY] :{
     name: Joi.string(),
     price: Joi.number(),
     stock: Joi.number(),
   }
-});
+}); */
 
 module.exports = {
   create,
-  findByName,
-  update
+/*   findByName,
+  update */
 }
